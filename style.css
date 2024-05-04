@@ -1,11 +1,22 @@
-body {
+.home {
+    background-image: url(imagens/baixados\ \(10\).jpeg);
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    
+   
+}
+
+
+/*.home {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    background-image: url(imagens/baixados\ \(10\).jpeg);
     background-size: cover;
-}
-body::before {
+   
+} */
+
+.home {
     content: "";
     position: absolute;
     top: 0;
@@ -14,18 +25,6 @@ body::before {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5); /* Altere o último valor (0.5) para ajustar a opacidade */
     z-index: -1; /* Certifique-se de que o pseudo-elemento esteja atrás de todo o conteúdo */
-}
-
-
-body.nav-itens::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: -1;
 }
 
 nav {
@@ -76,9 +75,63 @@ nav {
     transition: 1s background;
 }
 
-
-
 .nav-itens li a:hover {
     color: #ffffff; /* Cor do texto ao passar o mouse */
+}
+
+.frase {
+    margin-top: 100vh;
+    width: 100%;
+    height: 100px;
+    height: 40vh;
+    background-color: #534739;
+    align-items: center;
+    padding-top: 2%;
+    background-size: cover;
+    background-position: center;
+   
+}
+.column2{
+    margin-top: 120vh; /* Defina a margem superior igual à altura da seção home */
+}
+
+.frase h2{
+   text-align: center;
+   margin-top: 80px;
+   color: #fff;
+   font-family:monospace;
+
+}
+
+.about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about .content {
+    display: flex;
+    max-width: 1200px; /* Define a largura máxima do conteúdo */
+}
+
+.about .text {
+    flex: 1; /* Ocupa o espaço disponível */
+    padding: 20px;
+}
+
+.about h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.about h2 {
+    font-size: 18px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    padding: 20PX;
+}
+
+.about img {
+    max-width: 50%; /* Define a largura máxima da imagem */
+    margin-left: 20px; /* Adiciona margem à esquerda da imagem */
 }
 

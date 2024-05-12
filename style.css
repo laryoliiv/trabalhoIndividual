@@ -1,5 +1,5 @@
 .home {
-    background-image: url(imagens/baixados\ \(10\).jpeg);
+    background-image: url(imagens/WhatsApp\ Image\ 2024-05-12\ at\ 15.36.41.jpeg);
     background-position: center;
     background-size: cover;
     height: 100vh;
@@ -21,7 +21,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Altere o último valor (0.5) para ajustar a opacidade */
+    background-color: rgba(255, 255, 255, 0.5); /* Altere o último valor (0.5) para ajustar a opacidade */
     z-index: -1; /* Certifique-se de que o pseudo-elemento esteja atrás de todo o conteúdo */
 }
 
@@ -31,7 +31,7 @@ nav {
     font-family: 'Poppins', sans-serif;
     margin-top: 20px;
     align-items: center;
-    color: #202020;
+    color: #ffffff;
 }
 
 .navbar.scroll {
@@ -50,9 +50,10 @@ nav {
 
 .nav-itens>li>a {
     padding-left: 20px;
-    color: #202020;
+    color: #ffffff;
     text-decoration: none;
 }
+
 
 .login {
     padding: 10px 40px;
@@ -201,6 +202,7 @@ nav {
     border-radius: 5px;
 }
 
+
 .timeline-content h3{
     font-size: 20px;
     color: #fff;
@@ -299,4 +301,15 @@ nav {
 
 .date-brown{
     color:  #49392b;
+}
+
+.about-me{
+    background-color: #2f363e;
+}
+
+.about-me img{
+    width: 400px;
+    border-radius: 50%;
+    box-shadow: #000000;
+    padding: 20px;
 }

@@ -313,3 +313,26 @@ nav {
     box-shadow: #000000;
     padding: 20px;
 }
+
+.about-me h1 {
+    color: #f39ce7;
+    box-shadow: #000000;
+}
+
+.about-me p{
+    color: aliceblue;
+}
+
+.about-me{
+    display: flex;
+    align-items: center;
+    padding: 5%;
+    text-align: left;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+    
+}
+
+.about-me {
+
+}

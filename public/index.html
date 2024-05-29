@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ts info</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <script src="navbar.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,13 +16,10 @@
 
 <body>
 
-   <style>
-    html{
-        scroll-behavior: smooth;
-    }
-   </style>
+  
 
     <section class="home" id="home">
+       
         <nav class="navbar">
             <div class="logo">TS</div>
             <div class="links">
@@ -33,49 +30,43 @@
                     <li><a href="#Dev">Desenvolvedora</a></li>
                 </ul>
             </div>
-            <div class="btn">
+           <!---<div class="btn">
                 <button href="#" class="login">Login</button>
                 <button href="#" class="cadastro">Cadastro</button>
             </div>
-        </nav>
+        </nav>--> 
 
 
     </section>
 
     <!--parte de alguma frase -->
     <section class="frase" id="frase">
-        <h2>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            Exercitationem suscipit saepe voluptatum sunt adipisci, quo ex similique
-            necessitatibus quia! Iure officiis hic eveniet at debitis culpa
-            asperiores earum ipsum impedit.
-        </h2>
-
-
+        <div class="frase-container">
+            <p class="frase-text">"Eu nunca fui natural, tudo o que faço é tentar,tentar,tentar." <br>- Mirrorball, Taylor Swift</p>
+        </div>
     </section>
 
     <!-- Seção "Sobre" -->
     <section class="about" id="about">
-
-        <img src="imagens/taylor swift - ttpd _ the tortured poets department 4k photoshoot !.jpeg"
-            alt="img about taylor">
-        <!--<h1>
-            QUEM É TAYLOR SWIFT
-        </h1> -->
-        <h2>
-            Taylor Alison Swift é uma cantora, compositora e atriz americana nascida em 13 de dezembro de 1989.
-            Ela é uma das artistas mais populares e influentes da indústria musical contemporânea.
-            Taylor começou sua carreira como cantora de música country,
-            lançando seu álbum de estreia em 2006. Desde então, ela expandiu seu estilo musical para o pop, incorporando
-            elementos de rock,
-            eletrônica e outros gêneros em seu trabalho!
-        </h2>
-
-    </section> <!--LINHA DO TEMPO ALBUNS-->
+        <div class="about-content">
+            <div class="about-image">
+                <img src="assets/image/whos taylor.jpeg" alt="Imagem sobre Taylor Swift">
+            </div>
+            <div class="about-text">
+                <h2>Quem é Taylor Swift?</h2>
+                <p>
+                    Taylor Alison Swift é uma cantora, compositora e atriz americana nascida em 13 de dezembro de 1989. Ela é uma das artistas mais populares e influentes da indústria musical contemporânea. Taylor começou sua carreira como cantora de música country, lançando seu álbum de estreia em 2006. Desde então, ela expandiu seu estilo musical para o pop, incorporando elementos de rock, eletrônica e outros gêneros em seu trabalho!
+                </p>
+            </div>
+        </div>
+    </section>
+     <!--LINHA DO TEMPO ALBUNS-->
 
     <section class="timeline-section" id="albuns">
         
+        
         <div class="timeline-items">
+            
             <div class="timeline-item">
                 <div class="timeline-dot dot-green"></div>
                 <div class="timeline-date date-green">2006</div>
@@ -85,7 +76,6 @@
                         refletindo sua própria juventude na época. As fotos do encarte geralmente a mostram em ambientes
                         rurais e naturais,
                         evocando uma sensação de inocência e simplicidade.</p>
-                     
                 </div>
                 
             </div>
@@ -187,31 +177,126 @@
         </div>
     </section>
 
-        <section class="taylorVersion" id="Version">
-            
-        </section>
+    <section class="taylors-version" id="Version">
+        <div class="container">
+            <h2 id="tittle-version">Taylor's Version</h2>
+            <div class="content">
+                <div class="text">
+                    <p>Taylor Swift está regravando seus álbuns antigos para ter controle total sobre sua música. Os novos lançamentos, chamados de "Taylor's Version", trazem uma nova vida às canções que os fãs amam, com uma produção atualizada e algumas surpresas.</p>
+                    <p>Essa decisão surgiu após uma longa disputa com sua antiga gravadora, Big Machine Records, que vendeu os direitos dos seus primeiros seis álbuns sem o consentimento dela. Taylor decidiu regravar esses álbuns para recuperar o controle artístico e financeiro sobre seu próprio trabalho.</p>
+                    <p>Cada lançamento de "Taylor's Version" inclui não apenas as músicas originais, mas também faixas inéditas que nunca foram lançadas antes.</p>
+                </div>
+                <div class="images-version">
+                    <img src="assets/image/machine records.jpg" alt="Taylor Swift re-recording">
+                    <img src="assets/image/taylor-swift-vma.webp" alt="Taylor Swift performing">
+                </div>
+            </div>
+        </div>
+    </section>
+       
+    <section id="quiz">
+       
+    </section>
+    
     
         <section class="about-me" id="Dev">
 
             <div class="sobre">
-
-                <h1>Sobre mim</h1>
-                <P>Oii, meu nome é Larissa Oliveira, tenho 18 anos, nasci em São Paulo e atualmente estudo Análise e Desenvolvimento de Sistemas na SpTech.
-                   No meu tempo livre, eu gosto de ler livros, assistir séries, jogar vôlei e ficar com os meus gatos, desde pequena eu amo os animais, e por enquanto 
-                   eu tenho 3 gatos e 1 cachorro.
-                </P>
-                <h1>Mas, por que um projeto sobre a Taylor Swift?</h1>
-                <p>
-                    Comecei a acompanhar a Taylor no final de 2022, comecei a ouvir algumas músicas e me apaixonei pelo jeito que ela consegue se expressar,
-                    a forma que ela vira uma situação que aconteceu na vida dela e compõe isso de uma forma genial, e que muitas pessoas se identificam. Ela tem 34 anos e 
-                    compõe desde os 16 anos, então, ela tem músicas que refletem a mente de uma adolescente e você consegue ver o amadurecimento dela durante esses anos.
-                    Uma das coisas que me fez gostar dela foi a sinceridade com que ela escreve as músicas, exatamente do jeito que ela estava sentindo no momento, sem o medo de ser julgada.
-                </p>
+                <div class="texto">
+                    <h1>Sobre mim</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed quo omnis sunt animi impedit quod, quas distinctio voluptates quibusdam blanditiis dolor unde libero, hic aperiam delectus ad officiis minima earum?
+                    </p>
+                    <h1>Mas, por que um projeto sobre a Taylor Swift?</h1>
+                    <p>
+                        Comecei a acompanhar a Taylor no final de 2022, comecei a ouvir algumas músicas e me apaixonei pelo jeito que ela consegue se expressar,
+                        a forma que ela vira uma situação que aconteceu na vida dela e compõe isso de uma forma genial, e que muitas pessoas se identificam. Ela tem 34 anos e 
+                        compõe desde os 16 anos, então, ela tem músicas que refletem a mente de uma adolescente e você consegue ver o amadurecimento dela durante esses anos.
+                        Uma das coisas que me fez gostar dela foi a sinceridade com que ela escreve as músicas, exatamente do jeito que ela estava sentindo no momento, sem o medo de ser julgada.
+                    </p>
+                    
+                </div>
+                <div class="imagem">
+                    <img src="assets/about me.jpeg" alt="Foto de Larissa Oliveira">
+                 
+                </div>
             </div>
-            
-            <img src="imagens/about me.jpeg" alt="">
         </section>
         
+        <footer>
+            <div id="footer_content">
+                <div id="footer_contacts">
+                    <h1>Logo</h1>
+                    <p>It's all about your dreams.</p>
+    
+                    <div id="footer_social_media">
+                        <a href="#" class="footer-link" id="instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+    
+                        <a href="#" class="footer-link" id="facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+    
+                        <a href="#" class="footer-link" id="whatsapp">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <ul class="footer-list">
+                    <li>
+                        <h3>Blog</h3>
+                    </li>
+                    <li>
+                        <a href="#" class="footer-link">Tech</a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer-link">Adventures</a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer-link">Music</a>
+                    </li>
+                </ul>
+    
+                <ul class="footer-list">
+                    <li>
+                        <h3>Products</h3>
+                    </li>
+                    <li>
+                        <a href="#" class="footer-link">App</a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer-link">Desktop</a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer-link">Cloud</a>
+                    </li>
+                </ul>
+    
+                <div id="footer_subscribe">
+                    <h3>Subscribe</h3>
+    
+                    <p>
+                        Enter your e-mail to get notified about
+                        our news solutions
+                    </p>
+    
+                    <div id="input_group">
+                        <input type="email" id="email">
+                        <button>
+                            <i class="fa-regular fa-envelope"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+    
+            <div id="footer_copyright">
+                &#169
+                2023 all rights reserved
+            </div>
+        </footer>
+    </div>
+        <script src="script.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Completar a Palavra - Taylor Swift</title>
+    <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="start-screen">
+            <h1>Jogo de Completar a Palavra</h1>
+            <p>Complete as palavras das músicas da Taylor Swift arrastando as letras para os espaços corretos.</p>
+            <button id="start-button">Start</button>
+        </div>
+        <div id="word-container" class="hidden">
+            <!-- Espaços para as letras/sílabas serão gerados pelo JavaScript -->
+        </div>
+        <div id="pieces-container" class="hidden">
+            <!-- Letras/sílabas para arrastar serão geradas pelo JavaScript -->
+        </div>
+        <div id="timer" class="hidden">15</div>
+        <canvas id="result-chart" class="hidden"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="quiz.js"></script>
+</body>
+</html>

@@ -38,31 +38,61 @@
                 <p>Descubra qual álbum da Taylor Swift mais combina com você respondendo a algumas perguntas.</p>
                 <button class="botao-largo" onclick="iniciarQuiz()">Iniciar Quiz</button>
             </div>
-            <div class="quiz oculto" id="quiz" style="display: none;">
-                <div id="pergunta1" class="pergunta">
-                    <h2>Pergunta 1 de 2:</h2>
+            <div class="quiz" id="quiz" style="display: none;">
+                <div id="pergunta1" class="pergunta" style="display: block;">
+                    <h2>Pergunta 1 de 5:</h2>
                     <p>Qual é a sua estação do ano favorita?</p>
-                    <button id="botaoPrimavera" class="botao-largo" onclick="selecionarEstacao('debut')">Primavera</button>
-                    <button id="botaoVerao" class="botao-largo" onclick="selecionarEstacao('fearless')">Verão</button>
-                    <button id="botaoOutono" class="botao-largo" onclick="selecionarEstacao('red')">Outono</button>
-                    <button id="botaoInverno" class="botao-largo" onclick="selecionarEstacao('1989')">Inverno</button>
+                    <button class="botao-largo" onclick="selecionarEstacao('debut')">Primavera</button>
+                    <button class="botao-largo" onclick="selecionarEstacao('fearless')">Verão</button>
+                    <button class="botao-largo" onclick="selecionarEstacao('red')">Outono</button>
+                    <button class="botao-largo" onclick="selecionarEstacao('1989')">Inverno</button>
                     <br>
-                    <button class="botao-largo" onclick="proximaPergunta()">Próxima Pergunta</button>
+                    <button class="botao-largo" onclick="proximaPergunta(2)">Próxima Pergunta</button>
                 </div>
-                <div id="pergunta2" class="pergunta oculto">
-                    <h2>Pergunta 2 de 2:</h2>
+                <div id="pergunta2" class="pergunta" style="display: none;">
+                    <h2>Pergunta 2 de 5:</h2>
                     <p>Qual é o seu gênero musical favorito?</p>
-                    <button id="botaoPop" class="botao-largo" onclick="selecionarGenero('pop')">Pop</button>
-                    <button id="botaoRock" class="botao-largo" onclick="selecionarGenero('rock')">Rock</button>
-                    <button id="botaoCountry" class="botao-largo" onclick="selecionarGenero('country')">Country</button>
-                    <button id="botaoIndie" class="botao-largo" onclick="selecionarGenero('indie')">Indie</button>
+                    <button class="botao-largo" onclick="selecionarGenero('pop')">Pop</button>
+                    <button class="botao-largo" onclick="selecionarGenero('rock')">Rock</button>
+                    <button class="botao-largo" onclick="selecionarGenero('country')">Country</button>
+                    <button class="botao-largo" onclick="selecionarGenero('indie')">Indie</button>
+                    <br>
+                    <button class="botao-largo" onclick="proximaPergunta(3)">Próxima Pergunta</button>
+                </div>
+                <div id="pergunta3" class="pergunta" style="display: none;">
+                    <h2>Pergunta 3 de 5:</h2>
+                    <p>Qual é a sua personalidade?</p>
+                    <button class="botao-largo" onclick="selecionarPersonalidade('extrovertido')">Extrovertido</button>
+                    <button class="botao-largo" onclick="selecionarPersonalidade('introvertido')">Introvertido</button>
+                    <button class="botao-largo" onclick="selecionarPersonalidade('ambivertido')">Ambivertido</button>
+                    <button class="botao-largo" onclick="selecionarPersonalidade('outro')">Outro</button>
+                    <br>
+                    <button class="botao-largo" onclick="proximaPergunta(4)">Próxima Pergunta</button>
+                </div>
+                <div id="pergunta4" class="pergunta" style="display: none;">
+                    <h2>Pergunta 4 de 5:</h2>
+                    <p>Qual é o seu hobby favorito?</p>
+                    <button class="botao-largo" onclick="selecionarHobby('leitura')">Leitura</button>
+                    <button class="botao-largo" onclick="selecionarHobby('esportes')">Esportes</button>
+                    <button class="botao-largo" onclick="selecionarHobby('musica')">Música</button>
+                    <button class="botao-largo" onclick="selecionarHobby('viagens')">Viagens</button>
+                    <br>
+                    <button class="botao-largo" onclick="proximaPergunta(5)">Próxima Pergunta</button>
+                </div>
+                <div id="pergunta5" class="pergunta" style="display: none;">
+                    <h2>Pergunta 5 de 5:</h2>
+                    <p>O que você mais preza em um relacionamento?</p>
+                    <button class="botao-largo" onclick="selecionarRelacao('confiança')">Confiança</button>
+                    <button class="botao-largo" onclick="selecionarRelacao('comunicação')">Comunicação</button>
+                    <button class="botao-largo" onclick="selecionarRelacao('companheirismo')">Companheirismo</button>
+                    <button class="botao-largo" onclick="selecionarRelacao('independência')">Independência</button>
                     <br>
                     <button class="botao-largo" onclick="exibirResultado()">Ver Resultado</button>
                 </div>
             </div>
             <div class="resultado oculto" id="resultado" style="display: none;">
                 <h2>Resultado do Quiz</h2>
-                <canvas id="grafico" style="width: 2000px; height: 1500px;"></canvas>
+                <canvas id="grafico" style="width: 700px; height: 400px;"></canvas>
             </div>
         </div>
     </div>

@@ -1,99 +1,159 @@
-// Variáveis globais para armazenar as respostas do usuário
-let estacaoSelecionada = "";
-let generoSelecionado = "";
-let perguntaAtual = 1;
+let respostas = {
+    estacao: '',
+    genero: '',
+    personalidade: '',
+    hobby: '',
+    relacionamento: ''
+};
 
-// Função para iniciar o quiz
 function iniciarQuiz() {
-    // Exibe a primeira pergunta e oculta a introdução
-    document.getElementById("introducao").style.display = "none";
-    document.getElementById("quiz").style.display = "block";
-    document.getElementById("pergunta1").style.display = "block";
+    document.getElementById('introducao').style.display = 'none';
+    document.getElementById('quiz').style.display = 'block';
 }
 
-// Função para selecionar a estação
 function selecionarEstacao(estacao) {
-    estacaoSelecionada = estacao;
-    document.getElementById("pergunta" + perguntaAtual).style.display = "none";
-    perguntaAtual++;
-    if (perguntaAtual <= 2) {
-        document.getElementById("pergunta" + perguntaAtual).style.display = "block";
-    } else {
-        exibirResultado();
+    respostas.estacao = estacao;
+}
+
+function selecionarGenero(genero) {
+    respostas.genero = genero;
+}
+
+function selecionarPersonalidade(personalidade) {
+    respostas.personalidade = personalidade;
+}
+
+function selecionarHobby(hobby) {
+    respostas.hobby = hobby;
+}
+
+function selecionarRelacao(relacionamento) {
+    respostas.relacionamento = relacionamento;
+}
+
+function proximaPergunta(proxima) {
+    const totalPerguntas = 5;
+    for (let i = 1; i <= totalPerguntas; i++) {
+        document.getElementById(`pergunta${i}`).style.display = (i === proxima) ? 'block' : 'none';
     }
 }
 
-// Função para selecionar o gênero musical
-function selecionarGenero(genero) {
-    generoSelecionado = genero;
-}
-
-// Função para calcular a compatibilidade com base nas respostas do usuário
-function calcularCompatibilidade(estacao, genero) {
-    // Lógica fictícia para calcular a compatibilidade (apenas para exemplo)
-    return Math.random() * 100;
-}
-
-// Variável global para armazenar os álbuns da Taylor Swift
-const albunsTaylorSwift = [
-    { nome: "debut", genero: "country", estacao: "primavera" },
-    { nome: "fearless", genero: "country", estacao: "verao" },
-    { nome: "red", genero: "pop", estacao: "outono" },
-    { nome: "1989", genero: "pop", estacao: "inverno" },
-    { nome: "reputation", genero: "pop", estacao: "inverno" },
-    { nome: "lover", genero: "pop", estacao: "primavera" },
-    { nome: "folklore", genero: "indie", estacao: "outono" },
-    { nome: "evermore", genero: "indie", estacao: "outono" }
-];
-
-// Função para calcular a compatibilidade de cada álbum
-function calcularCompatibilidadeAlbums() {
-    let compatibilidades = {};
-    albunsTaylorSwift.forEach(album => {
-        const compatibilidade = calcularCompatibilidade(album.estacao, album.genero);
-        compatibilidades[album.nome] = compatibilidade;
-    });
-    return compatibilidades;
-}
-
-// Função para exibir o resultado do quiz
 function exibirResultado() {
-    // Calcula a compatibilidade de cada álbum
-    const compatibilidades = calcularCompatibilidadeAlbums();
+    document.getElementById('quiz').style.display = 'none';
+    document.getElementById('resultado').style.display = 'block';
+    atualizarKpis();
+    renderizarGrafico();
+}
 
-    // Ordena os álbuns com base na compatibilidade
-    const albunsOrdenados = Object.keys(compatibilidades).sort((a, b) => compatibilidades[b] - compatibilidades[a]);
+function atualizarKpis() {
+    let compatibilidadeGeral = calcularCompatibilidadeGeral();
+    let albumFavorito = determinarAlbumFavorito();
+    let porcentagemMesmoAlbum = calcularPorcentagemAlbum(albumFavorito);
 
-    // Atualiza as KPIs
-    const compatibilidadeGeral = compatibilidades[albunsOrdenados[0]];
-    const albumFavorito = albunsOrdenados[0];
-    document.getElementById("compatibilidadeGeral").innerText = compatibilidadeGeral.toFixed(2) + "%";
-    document.getElementById("albumFavorito").innerText = albumFavorito;
+    document.getElementById('compatibilidadeGeral').innerText = compatibilidadeGeral;
+    document.getElementById('albumFavorito').innerText = albumFavorito;
+    document.getElementById('porcentagemMesmoAlbum').innerText = porcentagemMesmoAlbum;
+}
 
-    // Oculta o quiz e exibe o resultado
-    document.getElementById("quiz").style.display = "none";
-    document.getElementById("resultado").style.display = "block";
 
-    // Configurações do gráfico
-    const ctx = document.getElementById('grafico').getContext('2d');
-    const chart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: albunsOrdenados,
-            datasets: [{
-                label: 'Compatibilidade',
-                data: albunsOrdenados.map(album => compatibilidades[album].toFixed(2)),
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
+function calcularCompatibilidadeGeral() {
+    // Ajuste a lógica de cálculo de compatibilidade conforme necessário
+    return Math.floor(Math.random() * 101); // Exemplo: compatibilidade aleatória de 0 a 100
+}
+
+function determinarAlbumFavorito() {
+    // Ajuste a lógica de determinação do álbum favorito com base nas respostas
+    if (respostas.estacao === 'debut' && respostas.genero === 'country') {
+        return 'Debut';
+    } else if (respostas.estacao === 'fearless' && respostas.genero === 'pop') {
+        return 'Fearless';
+    } else if (respostas.estacao === 'red' && respostas.genero === 'pop') {
+        return 'Red';
+    } else if (respostas.estacao === '1989' && respostas.genero === 'pop') {
+        return '1989';
+    } else if (respostas.estacao === 'reputation' && respostas.genero === 'pop') {
+        return 'Reputation';
+    } else if (respostas.estacao === 'lover' && respostas.genero === 'pop') {
+        return 'Lover';
+    } else if (respostas.estacao === 'folklore' && respostas.genero === 'pop') {
+        return 'Folklore';
+    } else if (respostas.estacao === 'evermore' && respostas.genero === 'pop') {
+        return 'Evermore';
+    } else {
+        // Se nenhuma combinação corresponder, retorne um álbum padrão
+        return 'Red'; // Exemplo: padrão como 'Red'
+    }
+}
+
+function calcularPorcentagemAlbum(album) {
+    // Ajuste a lógica de cálculo da porcentagem do álbum conforme necessário
+    return Math.floor(Math.random() * 101); // Exemplo: porcentagem aleatória de 0 a 100
+}
+
+function renderizarGrafico() {
+    let ctx = document.getElementById('grafico').getContext('2d');
+    let data = {
+        labels: ['Debut', 'Fearless', 'Speak Now', 'Red', '1989', 'Reputation', 'Lover', 'Folklore', 'Evermore'],
+        datasets: [{
+            label: 'Compatibilidade',
+            data: [calcularCompatibilidade('Debut'), calcularCompatibilidade('Fearless'), calcularCompatibilidade('Speak Now'),
+                   calcularCompatibilidade('Red'), calcularCompatibilidade('1989'), calcularCompatibilidade('Reputation'),
+                   calcularCompatibilidade('Lover'), calcularCompatibilidade('Folklore'), calcularCompatibilidade('Evermore')],
+            backgroundColor: [
+                'rgba(0, 128, 0, 0.5)',    // Debut (Verde)
+                'rgba(255, 255, 0, 0.5)',  // Fearless (Amarelo)
+                'rgba(128, 0, 128, 0.5)',  // Speak Now (Roxo)
+                'rgba(255, 0, 0, 0.5)',    // Red (Vermelho)
+                'rgba(173, 216, 230, 0.5)',// 1989 (Azul Claro)
+                'rgba(0, 0, 0, 0.5)',      // Reputation (Preto)
+                'rgba(255, 192, 203, 0.5)',// Lover (Rosa)
+                'rgba(169, 169, 169, 0.5)',// Folklore (Cinza)
+                'rgba(255, 165, 0, 0.5)'   // Evermore (Laranja)
+            ],
+            borderColor: [
+                'rgba(0, 128, 0, 1)',      // Debut (Verde)
+                'rgba(255, 255, 0, 1)',    // Fearless (Amarelo)
+                'rgba(128, 0, 128, 1)',    // Speak Now (Roxo)
+                'rgba(255, 0, 0, 1)',      // Red (Vermelho)
+                'rgba(173, 216, 230, 1)',  // 1989 (Azul Claro)
+                'rgba(0, 0, 0, 1)',        // Reputation (Preto)
+                'rgba(255, 192, 203, 1)',  // Lover (Rosa)
+                'rgba(169, 169, 169, 1)',  // Folklore (Cinza)
+                'rgba(255, 165, 0, 1)'     // Evermore (Laranja)
+            ],
+            borderWidth: 1
+        }]
+    };
+
+    let options = {
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 100
             }
-        }
+        },
+        responsive: true,
+        maintainAspectRatio: false
+    };
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: options
     });
+
+    // Adicionando legenda de cores
+    let legendHtml = '';
+    data.labels.forEach((label, index) => {
+        legendHtml += `<span style="color: ${data.borderColor[index]}">&#9632;</span> ${label}<br>`;
+    });
+    document.getElementById('legendas').innerHTML = legendHtml;
+}
+
+
+function calcularCompatibilidade(album) {
+    // Ajuste a lógica de cálculo de compatibilidade do álbum conforme necessário
+    let baseCompatibilidade = 50; // Exemplo: compatibilidade base
+    let ajuste = Math.floor(Math.random() * 31) - 15; // Exemplo: ajuste aleatório de -15 a 15
+    return baseCompatibilidade + ajuste;
 }

@@ -4,7 +4,7 @@ body, html {
     padding: 0;
     height: 100%;
     font-family: 'Helvetica', sans-serif;
-    background-color: #f9f9f9;
+    background-color: #d46298;
 }
 
 /* Container principal */
@@ -16,9 +16,9 @@ body, html {
 
 /* Barra lateral */
 .barra-lateral {
-    width: 350px;
-    background-color: #055526;
-    color: #fff;
+    width: 390px;
+    background-color: #0d1b42;
+    color: #fffffe;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -36,8 +36,8 @@ body, html {
 
 .barra-lateral .perfil img {
     border-radius: 50%;
-    width: 150px;
-    height: 150px;
+    width: 190px;
+    height: 180px;
     margin-top: 15%;
 }
 
@@ -68,18 +68,18 @@ body, html {
 
 /* Centralizando elementos */
 .introducao, .quiz, .resultado {
-    width: 80%;
-    max-width: 600px;
+    width: 100%;
+    max-width: 700px;
     text-align: center;
-    background-color: #fff;
-    padding: 30px;
+    background-color: #ffffff;
+    padding: 80px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
 }
 
 .kpi {
-    background-color: #ee0083;
+    background-color: #416334;
     border: 1px solid #ddd;
     border-radius: 20px;
     padding: 10px;
@@ -102,7 +102,7 @@ body, html {
 
 .kpi-percentage {
     font-size: 50px;
-    color: #eeff00; /* cor azul */
+    color: #15ff00; /* cor azul */
     font-weight: bold;
 }
 
@@ -128,10 +128,11 @@ body, html {
 /* Estilos específicos para perguntas */
 .pergunta {
     text-align: center;
-    display: none; /* Inicialmente oculto */
+    display: block; /* Inicialmente oculto */
 }
 
 .resultado{
-    max-width: 900px;
-    max-height: 800px;
+    max-width: 1000px;
+    max-height: 600px;
+    margin-left: 200px;
 }

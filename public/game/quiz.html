@@ -1,27 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo de Completar a Palavra - Taylor Swift</title>
+    <title>Quiz da Taylor Swift</title>
     <link rel="stylesheet" href="quiz.css">
 </head>
 <body>
-    <div id="game-container">
-        <div id="start-screen">
-            <h1>Jogo de Completar a Palavra</h1>
-            <p>Complete as palavras das músicas da Taylor Swift arrastando as letras para os espaços corretos.</p>
-            <button id="start-button">Start</button>
+    <div class="container">
+        <div class="barra-lateral">
+            <div class="perfil">
+                <img src="usuario.jpg" alt="Foto do Usuário">
+                <h3>Nome do Usuário</h3>
+            </div>
+            <div class="kpis">
+                <div class="kpi">
+                    <h4>Compatibilidade Geral</h4>
+                    <p>Porcentagem de compatibilidade geral:</p>
+                    <p class="kpi-percentage"><span id="compatibilidadeGeral">0</span>%</p>
+                </div>
+                <div class="kpi">
+                    <h4>Álbum Compatível</h4>
+                    <p>Seu álbum mais compatível:</p>
+                    <p><span id="albumFavorito">N/A</span></p>
+                </div>
+                <div class="kpi">
+                    <h4>Porcentagem de pessoas com o mesmo álbum</h4>
+                    <p>Que têm o mesmo álbum que você:</p>
+                    <p><span id="porcentagemMesmoAlbum">0</span>%</p>
+                </div>
+            </div>
+            
         </div>
-        <div id="word-container" class="hidden">
-            <!-- Espaços para as letras/sílabas serão gerados pelo JavaScript -->
+        <div class="conteudo-principal">
+            <div class="introducao center-ambos" id="introducao" style="display: block;">
+                <h1>Bem-vindo ao Quiz da Taylor Swift!</h1>
+                <p>Descubra qual álbum da Taylor Swift mais combina com você respondendo a algumas perguntas.</p>
+                <button class="botao-largo" onclick="iniciarQuiz()">Iniciar Quiz</button>
+            </div>
+            <div class="quiz oculto" id="quiz" style="display: none;">
+                <div id="pergunta1" class="pergunta">
+                    <h2>Pergunta 1 de 2:</h2>
+                    <p>Qual é a sua estação do ano favorita?</p>
+                    <button id="botaoPrimavera" class="botao-largo" onclick="selecionarEstacao('debut')">Primavera</button>
+                    <button id="botaoVerao" class="botao-largo" onclick="selecionarEstacao('fearless')">Verão</button>
+                    <button id="botaoOutono" class="botao-largo" onclick="selecionarEstacao('red')">Outono</button>
+                    <button id="botaoInverno" class="botao-largo" onclick="selecionarEstacao('1989')">Inverno</button>
+                    <br>
+                    <button class="botao-largo" onclick="proximaPergunta()">Próxima Pergunta</button>
+                </div>
+                <div id="pergunta2" class="pergunta oculto">
+                    <h2>Pergunta 2 de 2:</h2>
+                    <p>Qual é o seu gênero musical favorito?</p>
+                    <button id="botaoPop" class="botao-largo" onclick="selecionarGenero('pop')">Pop</button>
+                    <button id="botaoRock" class="botao-largo" onclick="selecionarGenero('rock')">Rock</button>
+                    <button id="botaoCountry" class="botao-largo" onclick="selecionarGenero('country')">Country</button>
+                    <button id="botaoIndie" class="botao-largo" onclick="selecionarGenero('indie')">Indie</button>
+                    <br>
+                    <button class="botao-largo" onclick="exibirResultado()">Ver Resultado</button>
+                </div>
+            </div>
+            <div class="resultado oculto" id="resultado" style="display: none;">
+                <h2>Resultado do Quiz</h2>
+                <canvas id="grafico" style="width: 2000px; height: 1500px;"></canvas>
+            </div>
         </div>
-        <div id="pieces-container" class="hidden">
-            <!-- Letras/sílabas para arrastar serão geradas pelo JavaScript -->
-        </div>
-        <div id="timer" class="hidden">15</div>
-        <canvas id="result-chart" class="hidden"></canvas>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="quiz.js"></script>
 </body>

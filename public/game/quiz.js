@@ -1,154 +1,99 @@
-// quiz.js
+// Variáveis globais para armazenar as respostas do usuário
+let estacaoSelecionada = "";
+let generoSelecionado = "";
+let perguntaAtual = 1;
 
-const words = [
-    'LOVE STORY',
-    'BLANK SPACE',
-    'SHAKE IT OFF',
-    'BAD BLOOD',
-    'YOU BELONG WITH ME'
+// Função para iniciar o quiz
+function iniciarQuiz() {
+    // Exibe a primeira pergunta e oculta a introdução
+    document.getElementById("introducao").style.display = "none";
+    document.getElementById("quiz").style.display = "block";
+    document.getElementById("pergunta1").style.display = "block";
+}
+
+// Função para selecionar a estação
+function selecionarEstacao(estacao) {
+    estacaoSelecionada = estacao;
+    document.getElementById("pergunta" + perguntaAtual).style.display = "none";
+    perguntaAtual++;
+    if (perguntaAtual <= 2) {
+        document.getElementById("pergunta" + perguntaAtual).style.display = "block";
+    } else {
+        exibirResultado();
+    }
+}
+
+// Função para selecionar o gênero musical
+function selecionarGenero(genero) {
+    generoSelecionado = genero;
+}
+
+// Função para calcular a compatibilidade com base nas respostas do usuário
+function calcularCompatibilidade(estacao, genero) {
+    // Lógica fictícia para calcular a compatibilidade (apenas para exemplo)
+    return Math.random() * 100;
+}
+
+// Variável global para armazenar os álbuns da Taylor Swift
+const albunsTaylorSwift = [
+    { nome: "debut", genero: "country", estacao: "primavera" },
+    { nome: "fearless", genero: "country", estacao: "verao" },
+    { nome: "red", genero: "pop", estacao: "outono" },
+    { nome: "1989", genero: "pop", estacao: "inverno" },
+    { nome: "reputation", genero: "pop", estacao: "inverno" },
+    { nome: "lover", genero: "pop", estacao: "primavera" },
+    { nome: "folklore", genero: "indie", estacao: "outono" },
+    { nome: "evermore", genero: "indie", estacao: "outono" }
 ];
 
-let currentWordIndex = 0;
-let correctGuesses = 0;
-let incorrectGuesses = 0;
-let timerInterval;
-
-const startScreen = document.getElementById('start-screen');
-const startButton = document.getElementById('start-button');
-const wordContainer = document.getElementById('word-container');
-const piecesContainer = document.getElementById('pieces-container');
-const resultChart = document.getElementById('result-chart');
-const timer = document.getElementById('timer');
-
-startButton.addEventListener('click', startGame);
-
-function startGame() {
-    startScreen.classList.add('hidden');
-    wordContainer.classList.remove('hidden');
-    piecesContainer.classList.remove('hidden');
-    timer.classList.remove('hidden');
-    loadWord();
-}
-
-function loadWord() {
-    resetState();
-    const word = words[currentWordIndex];
-    const letters = word.split('').filter(letter => letter !== ' ');
-    const shuffledPieces = letters.slice().sort(() => Math.random() - 0.5);
-    
-    word.split('').forEach((letter, index) => {
-        const slot = document.createElement('div');
-        slot.className = 'letter-slot';
-        slot.dataset.letter = letter;
-        slot.dataset.index = index;
-        slot.innerHTML = letter === ' ' ? '&nbsp;' : '';
-        wordContainer.appendChild(slot);
+// Função para calcular a compatibilidade de cada álbum
+function calcularCompatibilidadeAlbums() {
+    let compatibilidades = {};
+    albunsTaylorSwift.forEach(album => {
+        const compatibilidade = calcularCompatibilidade(album.estacao, album.genero);
+        compatibilidades[album.nome] = compatibilidade;
     });
-
-    shuffledPieces.forEach((piece) => {
-        const letterWrapper = document.createElement('div');
-        letterWrapper.className = 'letter-wrapper';
-        const letter = document.createElement('div');
-        letter.className = 'letter-piece';
-        letter.draggable = true;
-        letter.innerText = piece;
-        letterWrapper.appendChild(letter);
-        piecesContainer.appendChild(letterWrapper);
-        letterWrapper.addEventListener('dragstart', dragStart);
-    });
-
-    document.querySelectorAll('.letter-slot').forEach((slot) => {
-        slot.addEventListener('dragover', dragOver);
-        slot.addEventListener('drop', drop);
-    });
-
-    startTimer();
+    return compatibilidades;
 }
 
-function resetState() {
-    wordContainer.innerHTML = '';
-    piecesContainer.innerHTML = '';
-    clearInterval(timerInterval);
-    timer.innerText = '15';
-}
+// Função para exibir o resultado do quiz
+function exibirResultado() {
+    // Calcula a compatibilidade de cada álbum
+    const compatibilidades = calcularCompatibilidadeAlbums();
 
-function dragStart(event) {
-    const letterWrapper = event.target.closest('.letter-wrapper');
-    event.dataTransfer.setData('text/plain', letterWrapper.dataset.index);
-}
+    // Ordena os álbuns com base na compatibilidade
+    const albunsOrdenados = Object.keys(compatibilidades).sort((a, b) => compatibilidades[b] - compatibilidades[a]);
 
-function dragOver(event) {
-    event.preventDefault();
-}
+    // Atualiza as KPIs
+    const compatibilidadeGeral = compatibilidades[albunsOrdenados[0]];
+    const albumFavorito = albunsOrdenados[0];
+    document.getElementById("compatibilidadeGeral").innerText = compatibilidadeGeral.toFixed(2) + "%";
+    document.getElementById("albumFavorito").innerText = albumFavorito;
 
-function drop(event) {
-    event.preventDefault();
-    const index = event.dataTransfer.getData('text/plain');
-    const letterWrapper = document.querySelector(`.letter-wrapper[data-index="${index}"]`);
-    const slot = event.target.closest('.letter-slot');
-    if (slot && !slot.innerHTML.trim()) {
-        slot.appendChild(letterWrapper);
-        checkWin();
-    }
-}
+    // Oculta o quiz e exibe o resultado
+    document.getElementById("quiz").style.display = "none";
+    document.getElementById("resultado").style.display = "block";
 
-function checkWin() {
-    const slots = document.querySelectorAll('.letter-slot');
-    let isComplete = true;
-    slots.forEach((slot) => {
-        if (slot.innerText !== slot.dataset.letter) {
-            isComplete = false;
-        }
-    });
-    if (isComplete) {
-        correctGuesses++;
-        if (currentWordIndex < words.length - 1) {
-            currentWordIndex++;
-            loadWord();
-        } else {
-            showResults();
-        }
-    }
-}
-
-function startTimer() {
-    let timeLeft = 15;
-    timerInterval = setInterval(() => {
-        timeLeft--;
-        timer.innerText = timeLeft;
-        if (timeLeft <= 0) {
-            clearInterval(timerInterval);
-            incorrectGuesses++;
-            if (currentWordIndex < words.length - 1) {
-                currentWordIndex++;
-                loadWord();
-            } else {
-                showResults();
-            }
-        }
-    }, 1000);
-}
-
-function showResults() {
-    wordContainer.classList.add('hidden');
-    piecesContainer.classList.add('hidden');
-    timer.classList.add('hidden');
-    resultChart.classList.remove('hidden');
-    displayChart();
-}
-
-function displayChart() {
-    const ctx = resultChart.getContext('2d');
-    new Chart(ctx, {
-        type: 'pie',
+    // Configurações do gráfico
+    const ctx = document.getElementById('grafico').getContext('2d');
+    const chart = new Chart(ctx, {
+        type: 'bar',
         data: {
-            labels: ['Acertos', 'Erros'],
+            labels: albunsOrdenados,
             datasets: [{
-                data: [correctGuesses, incorrectGuesses],
-                backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)'],
-                borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
+                label: 'Compatibilidade',
+                data: albunsOrdenados.map(album => compatibilidades[album].toFixed(2)),
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1
             }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
         }
     });
 }

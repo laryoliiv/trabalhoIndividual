@@ -1,78 +1,137 @@
-/* quiz.css */
-body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+/* Estilos gerais */
+body, html {
     margin: 0;
-    background-color: #f5f5f5;
+    padding: 0;
+    height: 100%;
+    font-family: 'Helvetica', sans-serif;
+    background-color: #f9f9f9;
 }
 
-#game-container {
+/* Container principal */
+.container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+/* Barra lateral */
+.barra-lateral {
+    width: 350px;
+    background-color: #055526;
+    color: #fff;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: fixed; /* Adiciona fixação na lateral */
+    top: 0;
+    bottom: 0;
+}
+
+.barra-lateral .perfil {
     text-align: center;
+    margin-bottom: 30px;
 }
 
-.hidden {
-    display: none;
+.barra-lateral .perfil img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    margin-top: 15%;
 }
 
-#word-container, #pieces-container {
-    display: flex;
-    margin-bottom: 20px;
+.barra-lateral .perfil h3 {
+    margin: 10px 0 0;
 }
 
-.letter-slot {
-    width: 50px;
-    height: 50px;
-    margin: 5px;
-    border: 2px dashed #ccc;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-}
-
-.letter-piece {
-    width: 50px;
-    height: 50px;
-    margin: 5px;
-    background-color: #007bff;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    cursor: pointer;
-    user-select: none;
-}
-
-#start-screen h1 {
-    margin: 0 0 20px;
-}
-
-#start-button {
-    padding: 10px 20px;
+.barra-lateral .kpis h4 {
+    margin-top: 0;
     font-size: 18px;
-    background-color: #28a745;
-    color: #fff;
+}
+
+.barra-lateral .kpis p {
+    margin: 5px 0;
+    font-size: 20px;
+}
+
+/* Conteúdo principal */
+.conteudo-principal {
+    flex: 1;
+    margin-left: 250px; /* Ajusta o conteúdo principal para que não fique sob a barra lateral */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+/* Centralizando elementos */
+.introducao, .quiz, .resultado {
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.kpi {
+    background-color: #ee0083;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 10px;
+    margin-bottom: 10px;
+    padding: 25px;
+}
+
+.kpi h4 {
+    margin-bottom: 5px;
+}
+
+.kpi p {
+    margin-bottom: 3px;
+}
+
+.kpi span {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.kpi-percentage {
+    font-size: 50px;
+    color: #eeff00; /* cor azul */
+    font-weight: bold;
+}
+
+
+/* Botões */
+.botao-largo {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #e91e63;
+    color: white;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-#start-button:hover {
-    background-color: #218838;
+.botao-largo:hover {
+    background-color: #d81b60;
 }
 
-#timer {
-    font-size: 24px;
-    margin-bottom: 20px;
+/* Estilos específicos para perguntas */
+.pergunta {
+    text-align: center;
+    display: none; /* Inicialmente oculto */
+}
+
+.resultado{
+    max-width: 900px;
+    max-height: 800px;
 }

@@ -16,10 +16,10 @@ body, html {
 
 /* Barra lateral */
 .barra-lateral {
-    width: 390px;
+    width: 250px; /* Diminuir ainda mais a largura da barra lateral */
     background-color: #0d1b42;
     color: #fffffe;
-    padding: 20px;
+    padding: 15px; /* Diminuir o padding */
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
@@ -31,88 +31,89 @@ body, html {
 
 .barra-lateral .perfil {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 15px; /* Diminuir o margin-bottom */
 }
 
 .barra-lateral .perfil img {
     border-radius: 50%;
-    width: 190px;
-    height: 180px;
-    margin-top: 15%;
+    width: 120px; /* Diminuir ainda mais o tamanho da imagem */
+    height: 120px;
+    margin-top: 10%;
 }
 
 .barra-lateral .perfil h3 {
     margin: 10px 0 0;
+    font-size: 16px; /* Diminuir o tamanho da fonte */
 }
 
 .barra-lateral .kpis h4 {
     margin-top: 0;
-    font-size: 18px;
+    font-size: 14px; /* Diminuir o tamanho da fonte */
 }
 
 .barra-lateral .kpis p {
     margin: 5px 0;
-    font-size: 20px;
+    font-size: 14px; /* Diminuir o tamanho da fonte */
 }
 
 /* Conteúdo principal */
 .conteudo-principal {
     flex: 1;
-    margin-left: 250px; /* Ajusta o conteúdo principal para que não fique sob a barra lateral */
+    margin-left: 270px; /* Ajusta o conteúdo principal para que não fique sob a barra lateral */
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 20px;
+    padding: 15px; /* Diminuir o padding */
 }
 
 /* Centralizando elementos */
 .introducao, .quiz, .resultado {
     width: 100%;
-    max-width: 700px;
+    max-width: 500px; /* Diminuir ainda mais a largura máxima */
     text-align: center;
     background-color: #ffffff;
-    padding: 80px;
+    padding: 70px; /* Diminuir o padding */
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .kpi {
     background-color: #416334;
     border: 1px solid #ddd;
-    border-radius: 20px;
-    padding: 10px;
+    border-radius: 10px; /* Diminuir o border-radius */
+    padding: 10px; /* Diminuir o padding */
     margin-bottom: 10px;
-    padding: 25px;
 }
 
 .kpi h4 {
     margin-bottom: 5px;
+    font-size: 16px; /* Diminuir o tamanho da fonte */
 }
 
 .kpi p {
     margin-bottom: 3px;
+    font-size: 14px; /* Diminuir o tamanho da fonte */
 }
 
 .kpi span {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 16px; /* Diminuir o tamanho da fonte */
 }
 
 .kpi-percentage {
-    font-size: 50px;
+    font-size: 30px; /* Diminuir o tamanho da fonte */
     color: #15ff00; /* cor azul */
     font-weight: bold;
 }
 
-
 /* Botões */
 .botao-largo {
     width: 100%;
-    padding: 15px;
-    margin: 10px 0;
-    font-size: 16px;
+    padding: 8px; /* Diminuir o padding */
+    margin: 8px 0; /* Diminuir o margin */
+    font-size: 14px; /* Diminuir o tamanho da fonte */
     cursor: pointer;
     background-color: #e91e63;
     color: white;
@@ -131,8 +132,8 @@ body, html {
     display: block; /* Inicialmente oculto */
 }
 
-.resultado{
-    max-width: 1000px;
-    max-height: 600px;
-    margin-left: 200px;
+.resultado {
+    max-width: 700px; /* Diminuir a largura máxima */
+    max-height: 400px; /* Diminuir a altura máxima */
+    margin-right: 40px; /* Ajustar a margem */
 }

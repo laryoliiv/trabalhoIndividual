@@ -55,73 +55,195 @@ function atualizarKpis() {
     document.getElementById('porcentagemMesmoAlbum').innerText = porcentagemMesmoAlbum;
 }
 
-
 function calcularCompatibilidadeGeral() {
-    // Ajuste a lógica de cálculo de compatibilidade conforme necessário
-    return Math.floor(Math.random() * 101); // Exemplo: compatibilidade aleatória de 0 a 100
+    let [pontuacoes, albunsSemPontuacao] = calcularPontuacoes();
+    let compatibilidadeGeral = 100 - (albunsSemPontuacao * 5); // Reduz 5% por cada álbum sem pontuação
+    return compatibilidadeGeral < 0 ? 0 : compatibilidadeGeral; // Garante que a compatibilidade geral não seja negativa
 }
 
 function determinarAlbumFavorito() {
-    // Ajuste a lógica de determinação do álbum favorito com base nas respostas
-    if (respostas.estacao === 'debut' && respostas.genero === 'country') {
-        return 'Debut';
-    } else if (respostas.estacao === 'fearless' && respostas.genero === 'pop') {
-        return 'Fearless';
-    } else if (respostas.estacao === 'red' && respostas.genero === 'pop') {
-        return 'Red';
-    } else if (respostas.estacao === '1989' && respostas.genero === 'pop') {
-        return '1989';
-    } else if (respostas.estacao === 'reputation' && respostas.genero === 'pop') {
-        return 'Reputation';
-    } else if (respostas.estacao === 'lover' && respostas.genero === 'pop') {
-        return 'Lover';
-    } else if (respostas.estacao === 'folklore' && respostas.genero === 'pop') {
-        return 'Folklore';
-    } else if (respostas.estacao === 'evermore' && respostas.genero === 'pop') {
-        return 'Evermore';
-    } else {
-        // Se nenhuma combinação corresponder, retorne um álbum padrão
-        return 'Red'; // Exemplo: padrão como 'Red'
+    let [pontuacoes] = calcularPontuacoes();
+    return Object.keys(pontuacoes).reduce((a, b) => pontuacoes[a] > pontuacoes[b] ? a : b);
+}
+
+function calcularPontuacoes() {
+    let pontuacoes = {
+        'Debut': 0,
+        'Fearless': 0,
+        'Speak Now': 0,
+        'Red': 0,
+        '1989': 0,
+        'Reputation': 0,
+        'Lover': 0,
+        'Folklore': 0,
+        'Evermore': 0,
+        'Midnight': 0,
+        'TTPD': 0
+    };
+
+    // Pontuação para cada álbum com base nas respostas
+    if (respostas.estacao === 'verao') {
+        pontuacoes['Debut'] += 20;
+        pontuacoes['Fearless'] += 20;
+        pontuacoes['Lover'] += 20;
+    } else if (respostas.estacao === 'primavera') {
+        pontuacoes['Fearless'] += 20;
+        pontuacoes['Lover'] += 20;
+    } else if (respostas.estacao === 'inverno') {
+        pontuacoes['Speak Now'] += 20;
+        pontuacoes['1989'] += 20;
+        pontuacoes['Reputation'] += 20;
+        pontuacoes['Folklore'] += 20;
+        pontuacoes['TTPD'] += 20;
+    } else if (respostas.estacao === 'outono') {
+        pontuacoes['Red'] += 20;
+        pontuacoes['Folklore'] += 20;
+        pontuacoes['Evermore'] += 20;
+        pontuacoes['TTPD'] += 20;
     }
+
+    if (respostas.genero === 'country') {
+        pontuacoes['Debut'] += 20;
+    } else if (respostas.genero === 'pop') {
+        pontuacoes['Fearless'] += 20;
+        pontuacoes['Speak Now'] += 20;
+        pontuacoes['1989'] += 20;
+        pontuacoes['Lover'] += 20;
+        pontuacoes['Folklore'] += 20;
+        pontuacoes['TTPD'] += 20;
+        pontuacoes['Midnight'] += 20;
+    } else if (respostas.genero === 'rock') {
+        pontuacoes['Speak Now'] += 20;
+        pontuacoes['Red'] += 20;
+        pontuacoes['Reputation'] += 20;
+    } else if (respostas.genero === 'indie') {
+        pontuacoes['Red'] += 20;
+        pontuacoes['Reputation'] += 20;
+        pontuacoes['Folklore'] += 20;
+        pontuacoes['Evermore'] += 20;
+        pontuacoes['TTPD'] += 20;
+    }
+
+    if (respostas.personalidade === 'extrovertido') {
+        pontuacoes['Debut'] += 20;
+        pontuacoes['Fearless'] += 20;
+        pontuacoes['Red'] += 20;
+        pontuacoes['1989'] += 20;
+    } else if (respostas.personalidade === 'ambivertido') {
+        pontuacoes['Fearless'] += 20;
+        pontuacoes['Speak Now'] += 20;
+        pontuacoes['1989'] += 20;
+        pontuacoes['Reputation'] += 20;
+        pontuacoes['Lover'] += 20;
+        pontuacoes['Midnight'] += 20;
+        pontuacoes['TTPD'] += 20;
+    } else if (respostas.personalidade === 'introvertido') {
+        pontuacoes['Folklore'] += 20;
+        pontuacoes['Evermore'] += 20;
+        pontuacoes['TTPD'] += 20;
+    } else {
+        pontuacoes['Speak Now'] += 20;
+        pontuacoes['Reputation'] += 20;
+        pontuacoes['Lover'] += 20;
+    }
+
+    if (respostas.hobby === 'musica') {
+        pontuacoes['Debut'] += 20;
+        pontuacoes['Fearless'] += 20;
+        pontuacoes['Speak Now'] += 20;
+        pontuacoes['1989'] += 20;
+        pontuacoes['Folklore'] += 20;
+        pontuacoes['Midnight'] += 20;
+        pontuacoes['TTPD'] += 20;
+    } else if (respostas.hobby === 'viagem') {
+        pontuacoes['Fearless'] += 20;
+        pontuacoes['Red'] += 20;
+        pontuacoes['1989'] += 20;
+        pontuacoes['Midnight'] += 20;
+    } else if (respostas.hobby === 'leitura') {
+        pontuacoes['Speak Now'] += 20;
+        pontuacoes['Folklore'] += 20;
+        pontuacoes['Evermore'] += 20;
+        pontuacoes['Lover'] += 20;
+        pontuacoes['TTPD'] += 20;
+    } else if (respostas.hobby === 'esporte') {
+        pontuacoes['Red'] += 20;
+        pontuacoes['Midnight'] += 20;
+    }
+
+    if (respostas.relacionamento === 'confiança') {
+        pontuacoes['Debut'] += 20;
+        pontuacoes['Red'] += 20;
+        pontuacoes['Reputation'] += 20;
+        pontuacoes['Folklore'] += 20;
+        pontuacoes['Midnight'] += 20;
+        pontuacoes['Lover'] += 20;
+    } else if (respostas.relacionamento === 'companherismo') {
+        pontuacoes['Fearless'] += 20;
+        pontuacoes['Red'] += 20;
+        pontuacoes['1989'] += 20;
+        pontuacoes['TTPD'] += 20;
+        pontuacoes['Lover'] += 30;
+    } else if (respostas.relacionamento === 'independência') {
+        pontuacoes['Speak Now'] += 20;
+        pontuacoes['Reputation'] += 20;
+        pontuacoes['Evermore'] += 20;
+        pontuacoes['Lover'] += 10;
+    } else if (respostas.relacionamento === 'comunicação') {
+        pontuacoes['Red'] += 20;
+        pontuacoes['Folklore'] += 20;
+        pontuacoes['Lover'] += 15;
+    }
+
+    // Contar álbuns sem pontuação
+    let albunsSemPontuacao = Object.values(pontuacoes).filter(p => p === 0).length;
+
+    return [pontuacoes, albunsSemPontuacao];
 }
 
 function calcularPorcentagemAlbum(album) {
-    // Ajuste a lógica de cálculo da porcentagem do álbum conforme necessário
-    return Math.floor(Math.random() * 101); // Exemplo: porcentagem aleatória de 0 a 100
+    let [pontuacoes] = calcularPontuacoes();
+    let totalPontuacao = Object.values(pontuacoes).reduce((a, b) => a + b, 0);
+    let porcentagem = (pontuacoes[album] / totalPontuacao) * 100;
+    return porcentagem.toFixed(2);
 }
 
 function renderizarGrafico() {
+    let [pontuacoes] = calcularPontuacoes();
+
     let ctx = document.getElementById('grafico').getContext('2d');
     let data = {
-        labels: ['Debut', 'Fearless', 'Speak Now', 'Red', '1989', 'Reputation', 'Lover', 'Folklore', 'Evermore'],
+        labels: Object.keys(pontuacoes),
         datasets: [{
             label: 'Compatibilidade',
-            data: [calcularCompatibilidade('Debut'), calcularCompatibilidade('Fearless'), calcularCompatibilidade('Speak Now'),
-                   calcularCompatibilidade('Red'), calcularCompatibilidade('1989'), calcularCompatibilidade('Reputation'),
-                   calcularCompatibilidade('Lover'), calcularCompatibilidade('Folklore'), calcularCompatibilidade('Evermore')],
+            data: Object.values(pontuacoes),
             backgroundColor: [
                 'rgba(0, 128, 0, 0.5)',    // Debut (Verde)
                 'rgba(255, 255, 0, 0.5)',  // Fearless (Amarelo)
                 'rgba(128, 0, 128, 0.5)',  // Speak Now (Roxo)
-                'rgba(255, 0, 0, 0.5)',    // Red (Vermelho)
+                'rgba(220, 20, 60, 0.5)',    // Red (Vermelho)
                 'rgba(173, 216, 230, 0.5)',// 1989 (Azul Claro)
                 'rgba(0, 0, 0, 0.5)',      // Reputation (Preto)
                 'rgba(255, 192, 203, 0.5)',// Lover (Rosa)
                 'rgba(169, 169, 169, 0.5)',// Folklore (Cinza)
-                'rgba(255, 165, 0, 0.5)'   // Evermore (Laranja)
+                'rgba(255, 165, 0, 0.5)',  // Evermore (Laranja)
+                'rgba(0, 0, 139, 0.5)',   // Midnight (Índigo)
+                'rgba(169, 169, 169, 0.5)'   // TTPD (Ciano Escuro)
             ],
             borderColor: [
-                'rgba(0, 128, 0, 1)',      // Debut (Verde)
+                'rgba(0, 128, 0, 0.5)',      // Debut (Verde)
                 'rgba(255, 255, 0, 1)',    // Fearless (Amarelo)
-                'rgba(128, 0, 128, 1)',    // Speak Now (Roxo)
-                'rgba(255, 0, 0, 1)',      // Red (Vermelho)
-                'rgba(173, 216, 230, 1)',  // 1989 (Azul Claro)
+                'rgba(128, 0, 128, 0.5)',    // Speak Now (Roxo)
+                'rgba(220, 20, 60, 0.5)',      // Red (Vermelho)
+                'rgba(173, 216, 230, 0.5)',  // 1989 (Azul Claro)
                 'rgba(0, 0, 0, 1)',        // Reputation (Preto)
                 'rgba(255, 192, 203, 1)',  // Lover (Rosa)
                 'rgba(169, 169, 169, 1)',  // Folklore (Cinza)
-                'rgba(255, 165, 0, 1)'     // Evermore (Laranja)
+                'rgba(255, 165, 0, 1)',    // Evermore (Laranja)
+                'rgba(0, 0, 139, 0.5)',     // Midnight (Índigo)
+                'rgba(169, 169, 169, 0.5)'     // TTPD (Ciano Escuro)
             ],
-            borderWidth: 1
+            borderWidth: 2
         }]
     };
 
@@ -149,11 +271,13 @@ function renderizarGrafico() {
     });
     document.getElementById('legendas').innerHTML = legendHtml;
 }
-
-
-function calcularCompatibilidade(album) {
-    // Ajuste a lógica de cálculo de compatibilidade do álbum conforme necessário
-    let baseCompatibilidade = 50; // Exemplo: compatibilidade base
-    let ajuste = Math.floor(Math.random() * 31) - 15; // Exemplo: ajuste aleatório de -15 a 15
-    return baseCompatibilidade + ajuste;
+if (albumFavorito !== 'N/A') {
+    // Define o caminho da música com base no álbum favorito
+    let caminhoMusica = obterCaminhoMusica(albumFavorito);
+    if (caminhoMusica) {
+        // Reproduz a música correspondente ao álbum favorito
+        reproduzirMusica(caminhoMusica);
+    }
 }
+
+

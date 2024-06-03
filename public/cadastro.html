@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/cadastro.css">
+    <link rel="icon" href="./assets/icon/favicon2.ico" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <title>Cadastro</title>
@@ -16,7 +17,8 @@
         <div class="form-image">
             <img src="assets/image/cadastro.jpeg" alt="">
         </div>
-        <div class="form">
+        <div class="form" id="cardErro">
+            <span id="mensagem_erro"></span>
             <form action="#">
                 <div class="form-header">
                     <div class="title">
@@ -29,64 +31,29 @@
 
                 <div class="input-group">
                     <div class="input-box">
-                        <label for="firstname">Nome</label>
+                        <label for="inpt_firstname">Nome</label>
                         <input id="inpt_firstname" type="text" name="firstname" placeholder="Digite seu nome">
                     </div>
-                    <!---
+
                     <div class="input-box">
-                        <label for="lastname">Sobrenome</label>
-                        <input id="lastname" type="text" name="lastname" placeholder="Digite seu sobrenome" required>
-                    </div> -->
-                    <div class="input-box">
-                        <label for="email">E-mail</label>
+                        <label for="inpt_email">E-mail</label>
                         <input id="inpt_email" type="email" name="email" placeholder="Digite seu e-mail">
                     </div>
 
-
-
                     <div class="input-box">
-                        <label for="password">Senha</label>
+                        <label for="inpt_senha">Senha</label>
                         <input id="inpt_senha" type="password" name="password" placeholder="Digite sua senha">
                     </div>
 
-
                     <div class="input-box">
-                        <label for="confirmPassword">Confirme sua Senha</label>
-                        <input id="inpt_confirmarSenha" type="password" name="confirmPassword"
-                            placeholder="Digite sua senha novamente">
+                        <label for="inpt_confirmarSenha">Confirme sua Senha</label>
+                        <input id="inpt_confirmarSenha" type="password" name="confirmPassword" placeholder="Digite sua senha novamente">
                     </div>
 
                 </div>
 
-              <!--  <div class="gender-inputs">
-                    <div class="gender-title">
-                        <h6>Gênero</h6>
-                    </div>
-
-                    <div class="gender-group">
-                        <div class="gender-input">
-                            <input id="female" type="radio" name="gender" required>
-                            <label for="female">Feminino</label>
-                        </div>
-
-                        <div class="gender-input">
-                            <input id="male" type="radio" name="gender" required>
-                            <label for="male">Masculino</label>
-                        </div>
-
-                        <div class="gender-input">
-                            <input id="others" type="radio" name="gender" required>
-                            <label for="others">Outros</label>
-                        </div>
-
-                        <div class="gender-input">
-                            <input id="none" type="radio" name="gender" required>
-                            <label for="none">Prefiro não dizer</label>
-                        </div>
-                    </div>
-                </div>-->
                 <div class="continue-button">
-                    <button onclick="cadastro()"><a href="">Cadastrar</a> </button>
+                    <button type="button" onclick="cadastrar()">Cadastrar</button>
                 </div>
             </form>
         </div>
@@ -95,57 +62,90 @@
 
 </html>
 <script>
-         function cadastro(){  
-          
+     function cadastrar() {
+    
 
-        const nome = inpt_firstname.value
-        const email = inpt_email.value
-        const senha = inpt_senha.value
-        const confirmarSenha = inpt_confirmarSenha.value
-
-        if (!email.includes('@') || !email.endsWith('.com')) {
-            alert('Por favor, insira um e-mail válido.');
-            return false;
-        }
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = inpt_firstname.value 
+    var emailVar = inpt_email.value
+    var senhaVar = inpt_senha.value
+    var confirmacaoSenhaVar = inpt_confirmarSenha
+   
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == "" 
+    ) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Mensagem de erro para todos os campos em branco)";
 
       
-        if (senha.length < 6) {
-            alert('A senha deve ter mais de 6 caracteres.');
-            return false;
-        }
-
-        if (!/[a-zA-Z]/.test(senha)) {
-            alert('A senha deve conter pelo menos uma letra.');
-            return false;
-        }
-
-        let hasLetter = false;
-        let hasNumber = false;
-
-        for (let i = 0; i < senha.length; i++) {
-            if (isNaN(senha[i])) {
-                hasLetter = true;
-            } else {
-                hasNumber = true;
-            }
-        }
-
-        if (!hasLetter || !hasNumber) {
-            alert('A senha deve conter pelo menos uma letra e um número.')
-            return false;
-        }
-
-       
-        if (senha !== confirmarSenha) {
-            alert('As senhas não coincidem.')
-            return false;
-        }
-
-        alert('Cadastro realizado com sucesso!');
-        window.location.href = 'login.html';
-
-        return true;
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
     }
 
+    // Enviando o valor da nova input
+    fetch("/usuarios/autenticar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+
+          
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+   
+      });
+
+    return false;
+  }
+
+  function listar() {
+    fetch("/empresas/listar", {
+      method: "GET",
+    })
+      .then(function (resposta) {
+        resposta.json().then((empresas) => {
+          empresas.forEach((empresa) => {
+            listaEmpresas.innerHTML += `<option value='${empresa.id}'>${empresa.cnpj}</option>`;
+          });
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+     }
 
 </script>

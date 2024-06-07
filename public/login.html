@@ -6,50 +6,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/login.css">
-    <title>login</title>
+    <script src="./js/sessao.js"></script>
+    <title>Login</title>
 </head>
 
 <body>
     <div class="container">
         <div class="form-image">
-            <img src="assets/login.jpeg" alt="">
+            <img src="assets/login.jpeg" alt="Login Image">
         </div>
         <div class="form">
-            <form action="#">
+            <form id="login-form">
                 <div class="form-header">
                     <div class="title">
                         <h1>Entrar</h1>
                     </div>
                     <div class="login-button">
-                        <button><a href="cadastro.html">Cadastre-se</a></button>
+                        <button type="button"><a href="cadastro.html">Cadastre-se</a></button>
                     </div>
                 </div>
 
                 <div class="input-group">
                     <div class="input-box">
-                        <label for="firstname">E-mail</label>
-                        <input id="inpt_emailLogin" type="text" name="firstname" placeholder="Digite o e-mail cadastrado" required>
-                    </div>
-                    <!---
-                    <div class="input-box">
-                        <label for="lastname">Sobrenome</label>
-                        <input id="lastname" type="text" name="lastname" placeholder="Digite seu sobrenome" required>
-                    </div> -->
-                   <!-- <div class="input-box">
                         <label for="email">E-mail</label>
-                        <input id="email" type="email" name="email" placeholder="Digite seu e-mail" required>
-                    </div>-->
-
-                    
+                        <input id="inpt_emailLogin" type="text" name="email" placeholder="Digite o e-mail cadastrado" required>
+                    </div>
 
                     <div class="input-box">
                         <label for="password">Senha</label>
                         <input id="inpt_password" type="password" name="password" placeholder="Digite sua senha" required>
                     </div>
-
+                </div>
 
                 <div class="continue-button">
-                    <button onclick="entrar()"><a href="index.html">Continuar</a></button>
+                    <button type="submit">Continuar</button>
+                    <div id="div_aguardar" class="loading-div" style="display: none;">
+                        <img src="assets/circle-loading.gif" id="loading-gif" alt="Loading">
+                    </div>
                 </div>
             </form>
         </div>
@@ -57,20 +50,31 @@
 </body>
 
 </html>
+
 <script>
-      function entrar() {
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Evita o envio padrão do formulário
+        entrar();
+    });
+
+    function aguardar() {
+        document.getElementById('div_aguardar').style.display = 'block';
+    }
+
+    function finalizarAguardar() {
+        document.getElementById('div_aguardar').style.display = 'none';
+    }
+
+    function entrar() {
         aguardar();
 
-        var emailVar = inpt_emailLogin.value
-        var senhaVar = inpt_password.value 
+        var emailVar = document.getElementById('inpt_emailLogin').value;
+        var senhaVar = document.getElementById('inpt_password').value;
 
         if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
             finalizarAguardar();
             return false;
-        }
-        else {
+        } else {
             setInterval(sumirMensagem, 5000)
         }
 
@@ -86,7 +90,7 @@
                 emailServer: emailVar,
                 senhaServer: senhaVar
             })
-        }).then(function (resposta) {
+        }).then(function(resposta) {
             console.log("ESTOU NO THEN DO entrar()!")
 
             if (resposta.ok) {
@@ -98,32 +102,26 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
-
-                    setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
-                    }, 1000); // apenas para exibir o loading
+                    
+                        window.location.href = "index.html";
+                    // apenas para exibir o loading
 
                 });
 
             } else {
-
                 console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
-                });
+                finalizarAguardar();
             }
 
-        }).catch(function (erro) {
+        }).catch(function(erro) {
             console.log(erro);
-        })
+            finalizarAguardar();
+        });
 
         return false;
     }
 
     function sumirMensagem() {
-        cardErro.style.display = "none"
+        // cardErro.style.display = "none"
     }
 </script>

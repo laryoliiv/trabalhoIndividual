@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz da Taylor Swift</title>
     <link rel="stylesheet" href="quiz.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./js/sessao.js"></script>
 </head>
-<body>
-    <div class="container">
+<body onload="renderizarGrafico()">
+    <div class="container" id="cardErro">
         <div class="barra-lateral">
             <div class="perfil">
                 <img src="usuario.jpg" alt="Foto do Usuário">
@@ -24,13 +26,12 @@
                     <p>Seu álbum mais compatível:</p>
                     <p><span id="albumFavorito">N/A</span></p>
                 </div>
-                <div class="kpi">
+               <!--<div class="kpi">
                     <h4>Porcentagem de pessoas com o mesmo álbum</h4>
                     <p>Que têm o mesmo álbum que você:</p>
                     <p><span id="porcentagemMesmoAlbum">0</span>%</p>
-                </div>
+                </div>-->
             </div>
-            
         </div>
         <div class="conteudo-principal">
             <div class="introducao center-ambos" id="introducao" style="display: block;">
@@ -96,8 +97,6 @@
             </div>
         </div>
     </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="quiz.js"></script>
+    <script src="quizAlbum.js"></script>
 </body>
 </html>

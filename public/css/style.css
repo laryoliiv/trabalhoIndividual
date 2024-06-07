@@ -5,7 +5,7 @@ body{
 .home {
     background-image: url(img/fundo.jpeg);
     background-position: center;
-    background-size: cover;/* imagem de fundo para cobrir toda a área do elemento.*/
+    background-size: cover;
     height: 100vh;
     
    
@@ -349,7 +349,7 @@ nav {
     line-height: 1.6;
 }
 
-/* Estilos para a seção da timeline */
+/*  seção da timeline */
 .album-info {
     display: flex;
     align-items: center;
@@ -433,7 +433,7 @@ nav {
 
 #tittle-version {
     font-size: 3em;
-    color: #c71585; /* Cor personalizada */
+    color: #c71585;
     margin-bottom: 30px;
     font-family: 'Georgia', serif;
     position: relative;
@@ -473,13 +473,13 @@ nav {
 }
 .sobre {
 
-    line-height: 2.0; /* Define um bom espaçamento entre linhas */
+    line-height: 2.0; 
     font-size: 1.2rem;
 }
 .sobre h1 {
     font-size: 2em;
     margin-bottom: 10px;
-    line-height: 1.2; /* Define um espaçamento mais compacto para títulos */
+    line-height: 1.2; 
 }
 .sobre p {
     margin-bottom: 20px;
@@ -704,7 +704,7 @@ footer {
 }
 
 .onu-titulo span {
-    color: #007bff; /* Altere para a cor desejada */
+    color: #007bff; 
 }
 
 .flex {
@@ -732,7 +732,7 @@ footer {
 
 .contexto-onu i {
     font-size: 2em;
-    color: #007bff; /* Altere para a cor desejada */
+    color: #007bff;
     margin-bottom: 10px;
 }
 
